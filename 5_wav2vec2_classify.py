@@ -95,19 +95,19 @@ params = {
     'objective': 'binary',
     'metric': 'binary_logloss',
     'boosting_type': 'gbdt',
-    'max_depth': -1,  # Sin restricción en la profundidad del árbol
-    'num_leaves': 50,  # Mayor número de hojas
-    'learning_rate': 0.01,  # Reducir la tasa de aprendizaje
-    'min_data_in_leaf': 10,  # Reducir para permitir más divisiones
-    'feature_fraction': 0.8  # Probar un subconjunto de características más pequeño
+    'max_depth': -1,  # Sin restriccion en la profundidad del arbol
+    'num_leaves': 50,  # mayor numero de hojas
+    'learning_rate': 0.01,  # reducir la tasa de aprendizaje
+    'min_data_in_leaf': 10,  # reducir para permitir mas divisiones
+    'feature_fraction': 0.8  # probar un subconjunto de características mas pequeño
 }
 
 # Entrenar el modelo usando callbacks para early stopping
 train_data = lgb.Dataset(X_train_res, label=y_train_res)
 test_data = lgb.Dataset(X_test, label=y_test, reference=train_data)
 
-num_round = 500  # Aumentar el número de rondas
-callbacks = [lgb.early_stopping(stopping_rounds=20)]  # Aumentar el número de iteraciones antes del early stopping
+num_round = 500  
+callbacks = [lgb.early_stopping(stopping_rounds=20)]  # aumentar el numero de iteraciones antes del early stopping
 
 bst = lgb.train(params, train_data, num_round, valid_sets=[test_data], callbacks=callbacks)
 
